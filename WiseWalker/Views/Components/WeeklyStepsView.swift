@@ -25,6 +25,16 @@ struct WeeklyStepsView: View {
             )
             .foregroundStyle(.regularMaterial)
         }
+        .chartYAxis {
+            AxisMarks {
+                AxisValueLabel()
+            }
+        }
+        .chartXAxis {
+            AxisMarks {
+                AxisValueLabel()
+            }
+        }
         .frame(height: 200)
         .padding(.horizontal, 16)
         .offset(y: animationState ? 0 : 400)
