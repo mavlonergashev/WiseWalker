@@ -60,7 +60,7 @@ final class HealthService: StepsLoader {
             quantityType: stepType,
             quantitySamplePredicate: predicate,
             options: .cumulativeSum
-        ) { aa, result, error in
+        ) { _, result, error in
             if let result {
                 guard let quantity = result.sumQuantity() else {
                     completion(.error(HealthServiceErrors.stepsNotFound))

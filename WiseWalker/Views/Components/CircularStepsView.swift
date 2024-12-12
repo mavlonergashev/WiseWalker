@@ -11,6 +11,7 @@ struct CircularStepsView: View {
     
     @State private var steps: Double
     @State private var animationAmount = 1.0
+    @State private var animationState = false
     
     init(steps: Double) {
         self.steps = steps
@@ -36,7 +37,7 @@ struct CircularStepsView: View {
                 .fill(.black)
                 .frame(width: 130, height: 130)
             VStack {
-                Text(String(format: "%.0f", steps))
+                Text(steps.formatted())
                     .foregroundStyle(.white)
                     .font(.largeTitle).bold()
                 Text("steps")
@@ -44,8 +45,13 @@ struct CircularStepsView: View {
                     .font(.title).bold()
             }
         }
+        .offset(y: animationState ? 0 : -400)
+        .animation(.bouncy, value: animationState)
         .onAppear {
             animationAmount = 1.3
+            DispatchQueue.main.asyncAfter(wallDeadline: .now() + 0.1) {
+                animationState = true
+            }
         }
     }
 }
