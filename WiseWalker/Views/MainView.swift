@@ -11,7 +11,7 @@ struct MainView: View {
     
     var body: some View {
         TabView {
-            StepsView()
+            StepsView(stepsLoader: HealthService())
                 .tabItem {
                     Label("Steps", systemImage: "figure.stairs")
                 }
