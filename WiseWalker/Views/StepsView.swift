@@ -39,7 +39,7 @@ struct StepsView: View {
             Group {
                 switch (isLoading, currentError) {
                 case (true, _):
-                    ProgressView()
+                    LoadingView()
                 case (false, nil):
                     VStack {
                         Spacer()
