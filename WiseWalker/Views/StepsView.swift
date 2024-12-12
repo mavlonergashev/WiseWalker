@@ -58,6 +58,7 @@ struct StepsView: View {
             .navigationTitle("Steps")
         }
         .onAppear {
+            isLoading = true
             stepsLoader.getSteps { result in
                 switch result {
                 case .loaded(let stepsModel):

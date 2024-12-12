@@ -17,25 +17,29 @@ struct WeeklyStepsView: View {
     }
     
     var body: some View {
-        Chart(week, id: \.name) {
-            BarMark(
-                x: .value("Week", $0.name),
-                y: .value("Steps", $0.steps),
-                stacking: .standard
-            )
-            .foregroundStyle(.regularMaterial)
-        }
-        .chartYAxis {
-            AxisMarks {
-                AxisValueLabel()
+        VStack {
+            Chart(week, id: \.name) {
+                BarMark(
+                    x: .value("Week", $0.name),
+                    y: .value("Steps", $0.steps),
+                    stacking: .standard
+                )
+                .foregroundStyle(.regularMaterial)
             }
-        }
-        .chartXAxis {
-            AxisMarks {
-                AxisValueLabel()
+            .chartYAxis {
+                AxisMarks {
+                    AxisValueLabel()
+                }
             }
+            .chartXAxis {
+                AxisMarks {
+                    AxisValueLabel()
+                }
+            }
+            .frame(height: 200)
+            Text("This week")
+                .font(.subheadline)
         }
-        .frame(height: 200)
         .padding(.horizontal, 16)
         .offset(y: animationState ? 0 : 400)
         .animation(.bouncy, value: animationState)

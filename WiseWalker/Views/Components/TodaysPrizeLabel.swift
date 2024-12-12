@@ -10,6 +10,7 @@ import SwiftUI
 struct TodaysPrizeLabel: View {
     
     private let stepsLeft: Double
+    @State private var animateState = false
     
     init(stepsLeft: Double) {
         self.stepsLeft = stepsLeft
@@ -21,6 +22,11 @@ struct TodaysPrizeLabel: View {
              "\(stepsLeft.formatted()) steps left to get today's prize✨"
              : "You already got today's prize😊"
         )
+        .scaleEffect(animateState ? 1 : 0.1)
+        .animation(.bouncy, value: animateState)
+        .onAppear {
+            animateState = true
+        }
     }
 }
 
