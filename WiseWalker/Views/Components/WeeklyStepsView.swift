@@ -24,7 +24,7 @@ struct WeeklyStepsView: View {
                     y: .value("Steps", $0.steps),
                     stacking: .standard
                 )
-                .foregroundStyle(.regularMaterial)
+                .foregroundStyle(.indigo)
             }
             .chartYAxis {
                 AxisMarks {
