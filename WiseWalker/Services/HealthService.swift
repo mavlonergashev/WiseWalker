@@ -22,15 +22,15 @@ final class HealthService: StepsLoader {
         }
         
         guard
-            let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount),
-            let walkingSpeedType = HKQuantityType.quantityType(forIdentifier: .walkingSpeed),
-            let walkingDistanceType = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)
+            let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount)
+//            let walkingSpeedType = HKQuantityType.quantityType(forIdentifier: .walkingSpeed),
+//            let walkingDistanceType = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)
         else {
             completion(.error(HealthServiceErrors.requestError))
             return
         }
         
-        let readDataTypes: Set = [stepType, walkingSpeedType, walkingDistanceType]
+        let readDataTypes: Set = [stepType/*, walkingSpeedType, walkingDistanceType*/]
         
         healthStore.requestAuthorization(toShare: nil, read: readDataTypes) { [weak self] success, error in
             if success {
@@ -46,16 +46,17 @@ final class HealthService: StepsLoader {
     }
     
     private func fetchTodaySteps(completion: @escaping (StepsResult) -> Void) {
-        let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
+        guard let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount) else {
+            completion(.error(HealthServiceErrors.requestError))
+            return
+        }
         
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: Date())
         let now = Date()
         
-        // Define the predicate for today's data
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
         
-        // Query to get step count
         let query = HKStatisticsQuery(
             quantityType: stepType,
             quantitySamplePredicate: predicate,
