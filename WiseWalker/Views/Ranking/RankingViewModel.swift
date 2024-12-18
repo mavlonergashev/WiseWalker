@@ -37,9 +37,3 @@ final class RankingViewModel {
     ]
     
 }
-
-struct RankingModel: Identifiable {
-    let id: UUID = UUID()
-    let name: String
-    let steps: Int
-}

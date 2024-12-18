@@ -51,11 +51,6 @@ struct WeeklyStepsView: View {
     }
 }
 
-struct DayStep {
-    let name: String
-    let steps: Double
-}
-
 #Preview {
     WeeklyStepsView(week: [
         DayStep(name: "M", steps: 1341),
