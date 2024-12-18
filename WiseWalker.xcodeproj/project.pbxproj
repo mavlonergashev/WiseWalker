@@ -265,6 +265,7 @@
 				DEVELOPMENT_TEAM = 7AH7W52DQB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WiseWalker;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "We need access to your health data to get your steps";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = Something;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -298,6 +299,7 @@
 				DEVELOPMENT_TEAM = 7AH7W52DQB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WiseWalker;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "We need access to your health data to get your steps";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = Something;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
