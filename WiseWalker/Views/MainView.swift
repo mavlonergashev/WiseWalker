@@ -19,7 +19,7 @@ struct MainView: View {
                 .tabItem {
                     Label("Awards", systemImage: "brain.filled.head.profile")
                 }
-            RankingView()
+            RankingView(viewModel: RankingViewModel())
                 .tabItem {
                     Label("Ranking", systemImage: "chart.bar.xaxis.ascending")
                 }
