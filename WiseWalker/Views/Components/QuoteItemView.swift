@@ -23,17 +23,20 @@ struct QuoteItemView: View {
         ZStack {
             Color.white
                 .clipShape(.rect(cornerRadius: 12))
-            VStack(alignment: .leading, spacing: 16) {
-                Text(quote.title)
-                    .foregroundStyle(.black)
-                    .font(.callout)
-                    .fixedSize(horizontal: false, vertical: true)
-                Text(quote.author)
-                    .foregroundStyle(.indigo)
-                    .font(.caption)
-                    .bold()
+            HStack {
+                VStack(alignment: .leading, spacing: 16) {
+                    Text(quote.title)
+                        .foregroundStyle(.black)
+                        .font(.callout)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Text(quote.author)
+                        .foregroundStyle(.indigo)
+                        .font(.caption)
+                        .bold()
+                }
+                .padding()
+                Spacer()
             }
-            .padding()
             
             if isLocked {
                 LockerView(needs: needs)
