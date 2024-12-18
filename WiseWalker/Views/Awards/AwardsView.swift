@@ -28,8 +28,12 @@ struct AwardsView: View {
                 }
                 Section("All unlocked quotes") {
                     ForEach(viewModel.unlockedQuotes) { item in
-                        QuoteItemView(quote: item)
-                            .listRowSeparator(.hidden)
+                        NavigationLink {
+                            AwardDetailView(quote: item)
+                        } label: {
+                            QuoteItemView(quote: item)
+                        }
+                        .listRowSeparator(.hidden)
                     }
                 }
             }

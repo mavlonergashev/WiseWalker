@@ -9,4 +9,5 @@ import Foundation
 
 enum AppAnimations {
     static let loading = "loading"
+    static let quote = "quote"
 }
