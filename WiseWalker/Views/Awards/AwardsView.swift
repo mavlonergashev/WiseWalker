@@ -26,7 +26,7 @@ struct AwardsView: View {
                     )
                     .listRowSeparator(.hidden)
                 }
-                Section("All quotes") {
+                Section("All unlocked quotes") {
                     ForEach(viewModel.unlockedQuotes) { item in
                         QuoteItemView(quote: item)
                             .listRowSeparator(.hidden)
