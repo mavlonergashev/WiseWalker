@@ -15,16 +15,27 @@ struct AwardsView: View {
         self.viewModel = viewModel
     }
     
+    var todaysQuote: some View {
+        QuoteItemView(
+            quote: viewModel.todaysQuote,
+            isLocked: !viewModel.achievedTodaysPrize,
+            needs: viewModel.needs
+        )
+    }
+    
     var body: some View {
         NavigationStack {
             List {
                 Section("Explore today") {
-                    QuoteItemView(
-                        quote: viewModel.todaysQuote,
-                        isLocked: !viewModel.achievedTodaysPrize,
-                        needs: viewModel.needs
-                    )
-                    .listRowSeparator(.hidden)
+                    if viewModel.achievedTodaysPrize {
+                        NavigationLink(destination: AwardDetailView(quote: viewModel.todaysQuote)) {
+                            todaysQuote
+                        }
+                        .listRowSeparator(.hidden)
+                    } else {
+                        todaysQuote
+                        .listRowSeparator(.hidden)
+                    }
                 }
                 Section("All unlocked quotes") {
                     ForEach(viewModel.unlockedQuotes) { item in
