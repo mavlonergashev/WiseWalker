@@ -13,10 +13,8 @@ final class StepsViewModel {
     var steps: Int = 0
     var currentError: String? = nil
     
-    private let dailyGoal: Int = Constants.dailyGoal
-    
     var remainingSteps: Int {
-        dailyGoal - steps
+        Constants.dailyGoal - steps
     }
     
     var week: [DayStep] = [
