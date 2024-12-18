@@ -8,6 +8,6 @@
 import Foundation
 
 struct StepsModel {
-    let today: Double
-    let week: [Double]
+    let today: Int
+    let week: [Int]
 }

@@ -9,11 +9,11 @@ import SwiftUI
 
 struct CircularStepsView: View {
     
-    @State private var steps: Double
+    @State private var steps: Int
     @State private var animationAmount = 1.0
     @State private var animationState = false
     
-    init(steps: Double) {
+    init(steps: Int) {
         self.steps = steps
     }
     

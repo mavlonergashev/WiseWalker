@@ -9,11 +9,11 @@ import SwiftUI
 
 struct TodaysPrizeLabel: View {
     
-    private let stepsLeft: Double
+    private let stepsLeft: Int
     
     @State private var animateState = false
     
-    init(stepsLeft: Double) {
+    init(stepsLeft: Int) {
         self.stepsLeft = stepsLeft
     }
     

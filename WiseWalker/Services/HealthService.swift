@@ -9,11 +9,14 @@ import HealthKit
 
 protocol StepsLoader {
     func getSteps(completion: @escaping (StepsResult) -> Void)
+    var prizeCalculator: PrizeCalculator? { get set }
 }
 
 final class HealthService: StepsLoader {
     
     private let healthStore = HKHealthStore()
+    
+    weak var prizeCalculator: PrizeCalculator?
     
     func getSteps(completion: @escaping (StepsResult) -> Void) {
         guard HKHealthStore.isHealthDataAvailable() else {
@@ -61,13 +64,21 @@ final class HealthService: StepsLoader {
             quantityType: stepType,
             quantitySamplePredicate: predicate,
             options: .cumulativeSum
-        ) { _, result, error in
+        ) { [weak self] _, result, error in
             if let result {
                 guard let quantity = result.sumQuantity() else {
                     completion(.error(HealthServiceErrors.stepsNotFound))
                     return
                 }
-                let steps = quantity.doubleValue(for: .count())
+                
+                let steps = Int(quantity.doubleValue(for: .count()))
+                
+                let achievedTodaysPrize = steps >= 5000
+                self?.prizeCalculator?.achievedTodaysPrize = achievedTodaysPrize
+                if !achievedTodaysPrize {
+                    self?.prizeCalculator?.needs = 5000 - steps
+                }
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     completion(.loaded(StepsModel(today: steps, week: [])))
                 }

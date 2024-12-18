@@ -10,12 +10,12 @@ import Foundation
 @Observable
 final class StepsViewModel {
     var isLoading: Bool = true
-    var steps: Double = 0
+    var steps: Int = 0
     var currentError: String? = nil
     
-    private let dailyGoal: Double = 5000
+    private let dailyGoal: Int = 5000
     
-    var remainingSteps: Double {
+    var remainingSteps: Int {
         dailyGoal - steps
     }
     

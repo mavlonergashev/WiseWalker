@@ -9,13 +9,16 @@ import SwiftUI
 
 struct MainView: View {
     
+    private let stepsLoader = HealthService()
+    private let awardsViewModel = AwardsViewModel()
+    
     var body: some View {
         TabView {
-            StepsView(viewModel: StepsViewModel(stepsLoader: HealthService()))
+            StepsView(viewModel: StepsViewModel(stepsLoader: stepsLoader))
                 .tabItem {
                     Label("Steps", systemImage: "figure.stairs")
                 }
-            AwardsView()
+            AwardsView(viewModel: awardsViewModel)
                 .tabItem {
                     Label("Awards", systemImage: "brain.filled.head.profile")
                 }
@@ -23,6 +26,9 @@ struct MainView: View {
                 .tabItem {
                     Label("Ranking", systemImage: "chart.bar.xaxis.ascending")
                 }
+        }
+        .onAppear {
+            stepsLoader.prizeCalculator = awardsViewModel
         }
     }
 }

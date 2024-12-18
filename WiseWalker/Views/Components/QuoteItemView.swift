@@ -7,18 +7,16 @@
 
 import SwiftUI
 
-struct QuoteItemModel {
-    let title: String
-    let author: String
-    let description: String
-}
-
 struct QuoteItemView: View {
     
     private let quote: QuoteItemModel
+    private let isLocked: Bool
+    private let needs: Int
     
-    init(quote: QuoteItemModel) {
+    init(quote: QuoteItemModel, isLocked: Bool = false, needs: Int = 0) {
         self.quote = quote
+        self.isLocked = isLocked
+        self.needs = needs
     }
     
     var body: some View {
@@ -36,6 +34,10 @@ struct QuoteItemView: View {
                     .bold()
             }
             .padding()
+            
+            if isLocked {
+                LockerView(needs: needs)
+            }
         }
         .fixedSize(horizontal: false, vertical: true)
         .shadow(
