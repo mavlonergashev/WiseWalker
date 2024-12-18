@@ -26,14 +26,12 @@ final class HealthService: StepsLoader {
         
         guard
             let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount)
-//            let walkingSpeedType = HKQuantityType.quantityType(forIdentifier: .walkingSpeed),
-//            let walkingDistanceType = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)
         else {
             completion(.error(HealthServiceErrors.requestError))
             return
         }
         
-        let readDataTypes: Set = [stepType/*, walkingSpeedType, walkingDistanceType*/]
+        let readDataTypes: Set = [stepType]
         
         healthStore.requestAuthorization(toShare: nil, read: readDataTypes) { [weak self] success, error in
             if success {
