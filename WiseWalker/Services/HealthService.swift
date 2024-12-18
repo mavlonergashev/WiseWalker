@@ -71,10 +71,10 @@ final class HealthService: StepsLoader {
                 
                 let steps = Int(quantity.doubleValue(for: .count()))
                 
-                let achievedTodaysPrize = steps >= 5000
+                let achievedTodaysPrize = steps >= Constants.dailyGoal
                 self?.prizeCalculator?.achievedTodaysPrize = achievedTodaysPrize
                 if !achievedTodaysPrize {
-                    self?.prizeCalculator?.needs = 5000 - steps
+                    self?.prizeCalculator?.needs = Constants.dailyGoal - steps
                 }
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
